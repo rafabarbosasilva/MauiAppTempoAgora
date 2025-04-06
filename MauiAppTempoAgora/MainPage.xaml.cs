@@ -1,6 +1,5 @@
 ﻿using MauiAppTempoAgora.Models;
 using MauiAppTempoAgora.Services;
-using System.Threading.Tasks;
 
 namespace MauiAppTempoAgora
 {
@@ -12,12 +11,11 @@ namespace MauiAppTempoAgora
         {
             InitializeComponent();
         }
-
-        private async Task Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             try
             {
-                if(!string.IsNullOrEmpty(txt_cidade.Text))
+                if (!string.IsNullOrEmpty(txt_cidade.Text))
                 {
                     Tempo? t = await DataService.GetPrevisao(txt_cidade.Text);
 
@@ -35,21 +33,23 @@ namespace MauiAppTempoAgora
 
                         lbl_res.Text = dados_previsao;
                     }
-                    else 
+                    else
                     {
                         lbl_res.Text = "Sem dados de Previsão";
                     }
 
                 }
-                else 
+                else
                 {
                     lbl_res.Text = "Preencha a cidade.";
                 }
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 await DisplayAlert("Ops", ex.Message, "OK");
             }
         }
     }
 }
+    
