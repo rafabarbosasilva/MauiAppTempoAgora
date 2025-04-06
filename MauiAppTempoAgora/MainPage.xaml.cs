@@ -38,7 +38,7 @@ namespace MauiAppTempoAgora
                     }
                     else
                     {
-                        lbl_res.Text = "Sem dados de Previsão";
+                        lbl_res.Text = "Cidade não encontrada. Verifique o nome e tente novamente.";
                     }
 
                 }
@@ -46,12 +46,21 @@ namespace MauiAppTempoAgora
                 {
                     lbl_res.Text = "Preencha a cidade.";
                 }
+            }
 
+            catch (HttpRequestException)
+            {
+                await DisplayAlert("Erro de Conexão", "OK");
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Ops", ex.Message, "OK");
             }
+        }
+
+        private async Task DisplayAlert(string v1, string v2)
+        {
+            throw new NotImplementedException();
         }
     }
 }
